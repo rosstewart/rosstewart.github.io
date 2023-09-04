@@ -1,0 +1,22 @@
+body, html, #root {
+    margin: 0;
+    padding: 0;
+    /* background-color: black; */
+    height: 100%;
+    width: 100%;
+  }
+
+  .languageIcons {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    background-color: #EEEEEE;
+    padding: 2px;
+    border-radius: 10px;
+  }
+
+  /* button.privacyPolicy:link { color: #0000EE; }
+  button.privacyPolicy:visited { color: #551A8B; } */
+button.privacyPolicy {
+  color: #0000EE;
+}
