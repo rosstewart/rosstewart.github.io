@@ -5,8 +5,8 @@ import Alert from "./components/Alert";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import GymBrainPrivacyPolicy from "./pages/GymBrainPrivacyPolicy";
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+// import { useEffect } from "react";
+// import { useLocation } from "react-router-dom";
 
 function App() {
   return (

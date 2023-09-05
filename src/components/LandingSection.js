@@ -118,42 +118,13 @@ const LandingSection = () => (
       <Avatar height={120} width={120} src={ProfilePic} />
       <Heading as="h4" fontSize="lg">{greeting}</Heading>
       <Box height={25}></Box>
-      <Heading as="h1" fontSize="4xl">{bio1}</Heading>
-      <Heading as="h1" fontSize="3xl">{bio2}</Heading>
+      <Heading textAlign="center" as="h1" fontSize="4xl">{bio1}</Heading>
+      <Heading textAlign="center" as="h1" fontSize="3xl">{bio2}</Heading>
       <Heading as="h6" fontSize="2xl" marginTop="80px" marginBottom="10px">Developer Skills</Heading>
-      <LanguageHeader>Frameworks & Libraries</LanguageHeader>
-      <HStack spacing={8}>
-        {frameworksAndLibraries.map((framework) => (
-          <a target="_blank" href={framework.url} key={framework.name}>
-            <img className="languageIcons" src={framework.getImageSrc()} />
-            <Heading as="p" marginTop="6px" fontSize="3xs" textAlign="center">{framework.name}</Heading>
-          </a>))}
-      </HStack>
-      <LanguageHeader>Front-End Languages</LanguageHeader>
-      <HStack spacing={8}>
-        {frontendLanguages.map((language) => (
-          <a target="_blank" href={language.url} key={language.name}>
-            <img className="languageIcons" src={language.getImageSrc()} />
-            <Heading as="p" marginTop="6px" fontSize="3xs" textAlign="center">{language.name}</Heading>
-          </a>))}
-      </HStack>
-      <LanguageHeader>Back-End and Object/Data-Oriented Languages</LanguageHeader>
-      <HStack spacing={8}>
-        {backendAndDataLanguages.map((language) => (
-          <a target="_blank" href={language.url} key={language.name}>
-            <img className="languageIcons" src={language.getImageSrc()} />
-            <Heading as="p" marginTop="6px" fontSize="3xs" textAlign="center">{language.name}</Heading>
-          </a>))}
-      </HStack>
-      <LanguageHeader>Design Tools</LanguageHeader>
-      <HStack spacing={8}>
-        {designTools.map((designTool) => (
-          <a target="_blank" href={designTool.url} key={designTool.name}>
-            <img className="languageIcons" src={designTool.getImageSrc()} />
-            <Heading as="p" marginTop="6px" fontSize="3xs" textAlign="center">{designTool.name}</Heading>
-          </a>
-        ))}
-      </HStack>
+      <LanguageWrapper heading="Frameworks & Libraries" languages={frameworksAndLibraries}/>
+      <LanguageWrapper heading="Front-End Languages" languages={frontendLanguages}/>
+      <LanguageWrapper heading="Back-End and Object/Data-Oriented Languages" languages={backendAndDataLanguages}/>
+      <LanguageWrapper heading="Design Tools" languages={designTools}/>
     </VStack>
 
   </FullScreenSection>
@@ -161,7 +132,22 @@ const LandingSection = () => (
 
 export default LandingSection;
 
+function LanguageWrapper({ heading, languages }) {
+  return (
+    <>
+      <LanguageHeader>{heading}</LanguageHeader>
+      <HStack spacing={8} flexWrap="wrap" paddingLeft="20px" paddingRight="20px">
+        {languages.map((language) => (
+          <a target="_blank" href={language.url} key={language.name}>
+            <img className="languageIcons" src={language.getImageSrc()} alt={`${language.name} icon`} />
+            <Heading as="p" marginTop="6px" fontSize="3xs" textAlign="center">{language.name}</Heading>
+          </a>))}
+      </HStack>
+    </>
+  );
+}
+
 function LanguageHeader(props) {
-  return <Heading as="h6" fontSize="md" marginTop="20px" marginBottom="10px">{props.children}</Heading>;
+  return <Heading textAlign="center" paddingLeft="20px" paddingRight="20px" as="h6" fontSize="md" marginTop="20px" marginBottom="10px">{props.children}</Heading>;
 }
 

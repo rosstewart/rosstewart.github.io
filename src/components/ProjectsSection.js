@@ -7,7 +7,7 @@ import {
   faAppStoreIos,
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFileAlt } from "@fortawesome/free-solid-svg-icons";
+import { faFileAlt, faLink } from "@fortawesome/free-solid-svg-icons";
 
 const projects = [
   {
@@ -45,13 +45,25 @@ const projects = [
   {
     title: "Restaurant Web Application",
     description:
-      "A response restaurant web application built with React JS for the Meta Intro to Front-End Development certificate. The restaurant is called \"Little Lemon\", with featured foods, reviews, information, and a feature to book a table in the restaurant, with simulated API calls.",
+      "A responsive restaurant web application built with React JS for the Meta Intro to Front-End Development certificate. The restaurant is called \"Little Lemon\", with featured foods, reviews, information, and a feature to book a table in the restaurant, with simulated API calls.",
     getImageSrc: () => require("../assets/projectImages/littleLemon.png"),
     socials: [
       {
         icon: faGithub,
         url: "https://github.com/rosstewart/front_end_capstone",
       }
+    ],
+  },
+  {
+    title: "This Website (Portfolio Web Application)",
+    description:
+      "A responsive portfolio web application built with React JS with different pages for each project and a contact section.",
+    getImageSrc: () => require("../assets/projectImages/portfolio.png"),
+    socials: [
+      {
+        icon: faGithub,
+        url: "https://github.com/rosstewart/rosstewart.github.io",
+      },
     ],
   },
   {
@@ -94,7 +106,10 @@ const ProjectsSection = () => {
       </Heading>
       <Box
         display="grid"
-        gridTemplateColumns="repeat(2,minmax(0,1fr))"
+        gridTemplateColumns={{
+          base: "repeat(1, 1fr)",   // Single column on smaller screens
+          md: "repeat(2, minmax(0, 1fr))",  // Two columns on screens of width md and larger
+        }}
         gridGap={8}
       >
         {projects.map((project) => (

@@ -20,6 +20,7 @@ const Card = ({ title, description, imageSrc, socials }) => {
       bg="white"
       rounded="lg"
       boxShadow="lg"
+      maxWidth="580px"
     >
       <a href={`/#project-${title}`}>
         <Image
