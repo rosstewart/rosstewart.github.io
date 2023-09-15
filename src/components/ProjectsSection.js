@@ -25,12 +25,13 @@ const projects = [
         url: "https://apps.apple.com/us/app/gym-brain/id6459306371?platform=iphone",
       }
     ],
+    clickable: false,
   },
   {
     title: "PICNIC",
     description:
       "Protein structure modelling using machine learning concepts: Refining AlphaFold TS models using 3D residual and convolutional neural networks",
-    getImageSrc: () => require("../assets/projectImages/casp15.webp"),
+    getImageSrc: () => require("../assets/projectImages/casp15.png"),
     socials: [
       {
         icon: faGithub,
@@ -41,6 +42,20 @@ const projects = [
         url: "https://predictioncenter.org/casp15/doc/CASP15_Abstracts.pdf#page=193",
       }
     ],
+    clickable: false,
+  },
+  {
+    title: "AI Humanizer",
+    description:
+      "Software to convert normal AI-generated text into text that is undetectable by AI detection algorithms",
+    getImageSrc: () => require("../assets/projectImages/humanizer.png"),
+    socials: [
+      {
+        icon: faGithub,
+        url: "https://github.com/rosstewart/",
+      },
+    ],
+    clickable: true,
   },
   {
     title: "Restaurant Web Application",
@@ -53,6 +68,7 @@ const projects = [
         url: "https://github.com/rosstewart/front_end_capstone",
       }
     ],
+    clickable: false,
   },
   {
     title: "This Website (Portfolio Web Application)",
@@ -65,6 +81,7 @@ const projects = [
         url: "https://github.com/rosstewart/rosstewart.github.io",
       },
     ],
+    clickable: false,
   },
   {
     title: "Hologis",
@@ -89,6 +106,7 @@ const projects = [
         url: "https://github.com/rosstewart/javaPacman",
       }
     ],
+    clickable: false,
   },
 ];
 
@@ -119,6 +137,7 @@ const ProjectsSection = () => {
             description={project.description}
             imageSrc={project.getImageSrc()}
             socials={project.socials}
+            clickable={project.clickable}
           />
         ))}
       </Box>

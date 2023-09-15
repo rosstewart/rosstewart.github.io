@@ -110,6 +110,8 @@ const Header = () => {
   return (
     <>
       <Box
+        overflowX="hidden"
+        boxSizing="border-box"
         position="fixed"
         top={0}
         left={0}
@@ -121,17 +123,21 @@ const Header = () => {
         backgroundColor="#18181b"
         id="header"
         zIndex={2}
+        maxWidth="100vw"
       >
         <nav>
-          <Box color="white" maxWidth="1280px" margin="0 auto">
+          <Box color="white" maxWidth="1280px" margin="0 auto"
+            overflowX="hidden">
             <HStack
-              px={16}
-              py={4}
+              px="50px"
+              py="12px"
               justifyContent="space-between"
               alignItems="center"
               spacing={8}
+              overflowX="hidden"
             >
-              <HStack spacing={8}>
+              <HStack spacing={8}
+                overflowX="hidden">
                 {socials.map((social) => (<a href={social.url} key={social.icon.iconName} target="_blank"><FontAwesomeIcon icon={social.icon} size="2x" /></a>))}
               </HStack>
               {useSmallHeader ? <button onClick={() => handleDropdownClick()}><FontAwesomeIcon icon={faBars} size="2x" /></button> : <PageLinks id="" handleClick={handleClick} />}
@@ -139,7 +145,8 @@ const Header = () => {
           </Box>
         </nav>
       </Box>
-      {useSmallHeader && <PageLinks id="headerDropdown" handleClick={handleClick} />}
+      {useSmallHeader && <PageLinks
+        overflowX="hidden" id="headerDropdown" handleClick={handleClick} />}
     </>
   );
 };

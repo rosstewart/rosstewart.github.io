@@ -5,6 +5,7 @@ import Alert from "./components/Alert";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import GymBrainPrivacyPolicy from "./pages/GymBrainPrivacyPolicy";
+import HumanizerPage from './pages/HumanizerPage';
 // import { useEffect } from "react";
 // import { useLocation } from "react-router-dom";
 
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/projects/gym-brain/privacy-policy" element={<GymBrainPrivacyPolicy />} />
+            <Route path="/projects/ai-humanizer" element={<HumanizerPage />} />
           </Routes>
         </Router>
         <Alert />

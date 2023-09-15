@@ -35,15 +35,15 @@ function HomePage() {
         }
     }, [location]);
     return (
-        <>
+        <div style={{color: "red"}}>
             <Header />
             <main>
-                <LandingSection style={{ width: "100%" }} />
+                <LandingSection style={{ width: "100vw" }} />
                 <ProjectsSection style={{ width: "100vw" }} />
                 <ContactMeSection style={{ width: "100vw" }} />
             </main>
             <Footer />
-        </>
+        </div>
     )
 }
 

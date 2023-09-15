@@ -56,7 +56,7 @@ const ContactMeSection = () => {
       spacing={8}
       width="100%"
     >
-        <VStack className={isMobile ? 'lightPadding' : ''} minW="350px" maxW={isMobile ? "513px" : "1280px"} w="100%" p={32} alignItems="flex-start">
+        <VStack className={isMobile ? 'lightPadding' : ''} maxW={isMobile ? "513px" : "1280px"} w="100%" p={32} alignItems="flex-start">
           <Heading as="h1" id="contactme-section">
             Contact me
           </Heading>
