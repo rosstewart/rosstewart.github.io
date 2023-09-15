@@ -67,29 +67,29 @@
             console.log('attempting to redirect:');
             const url = window.location.pathname;
             console.log(url)
-            let index = -1;
+            // let index = -1;
 
-            for (let i = 0; i < 3; i++) {
-                index = url.indexOf('/', index + 1);
+            // for (let i = 0; i < 3; i++) {
+            //     index = url.indexOf('/', index + 1);
 
-                if (index === -1) {
-                    break;
-                }
-            }
+            //     if (index === -1) {
+            //         break;
+            //     }
+            // }
 
-            const reactRoute = url.indexOf('/') !== -1 ? url.substring(index) : "/";
+            // const reactRoute = url.indexOf('/') !== -1 ? url.substring(index) : "/";
 
-            console.log(`index: ${index}`);
-            console.log(`reactRoute: ${reactRoute}`);
-            console.log('finished redirecting');
+            // console.log(`index: ${index}`);
+            // console.log(`reactRoute: ${reactRoute}`);
+            // console.log('finished redirecting');
 
 
             console.log("waiting");
-            await sleep(5000);
-            console.log("Waited 5 seconds");
+            await sleep(3000);
+            console.log("Waited 3 seconds");
 
 
-            window.location.href = reactRoute;
+            window.location.href = url;
         }
 
         // Extract the GitHub Pages relative path from the URL
