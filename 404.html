@@ -66,6 +66,7 @@
         async function demo() {
             console.log('attempting to redirect:');
             const url = window.location.pathname;
+            console.log(url)
             let index = -1;
 
             for (let i = 0; i < 3; i++) {
@@ -76,7 +77,7 @@
                 }
             }
 
-            const reactRoute = index !== -1 ? url.substring(index) : "/";
+            const reactRoute = url.indexOf('/') !== -1 ? url.substring(index) : "/";
 
             console.log(`index: ${index}`);
             console.log(`reactRoute: ${reactRoute}`);
