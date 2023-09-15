@@ -68,6 +68,24 @@
             await sleep(5000);
             console.log("Waited 5 seconds");
             console.log("End");
+            console.log('attempting to redirect:');
+            const url = window.location.pathname;
+            let index = -1;
+
+            for (let i = 0; i < 3; i++) {
+                index = url.indexOf('/', index + 1);
+
+                if (index === -1) {
+                    break;
+                }
+            }
+
+            const reactRoute = index !== -1 ? url.substring(index) : "/";
+            window.location.href = reactRoute;
+
+            console.log(`index: ${index}`);
+            console.log(`reactRoute: ${reactRoute}`);
+            console.log('finished redirecting');
         }
 
         // Extract the GitHub Pages relative path from the URL
@@ -76,26 +94,26 @@
         // The third segment should be your React route
         // if (pathSegments.length > 3) {
         // for (var i = 3; i < pathSegments.length; i++) {
-        console.log('attempting to redirect:');
-        const url = window.location.pathname;
-        let index = -1;
+        // console.log('attempting to redirect:');
+        // const url = window.location.pathname;
+        // let index = -1;
 
-        for (let i = 0; i < 3; i++) {
-            index = url.indexOf('/', index + 1);
+        // for (let i = 0; i < 3; i++) {
+        //     index = url.indexOf('/', index + 1);
 
-            if (index === -1) {
-                break;
-            }
-        }
+        //     if (index === -1) {
+        //         break;
+        //     }
+        // }
 
-        const reactRoute = index !== -1 ? url.substring(index) : "/";
-        window.location.href = reactRoute;
+        // const reactRoute = index !== -1 ? url.substring(index) : "/";
+        // window.location.href = reactRoute;
 
-        console.log(`index: ${index}`);
-        console.log(`reactRoute: ${reactRoute}`);
-        console.log('finished redirecting');
+        // console.log(`index: ${index}`);
+        // console.log(`reactRoute: ${reactRoute}`);
+        // console.log('finished redirecting');
 
-        await demo()
+        demo()
         // }
         // const reactRoute = pathSegments[3] || ''; // This will default to an empty string if the segment doesn't exist
 
