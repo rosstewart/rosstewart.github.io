@@ -64,10 +64,6 @@
         }
 
         async function demo() {
-            console.log("Start");
-            await sleep(5000);
-            console.log("Waited 5 seconds");
-            console.log("End");
             console.log('attempting to redirect:');
             const url = window.location.pathname;
             let index = -1;
@@ -81,11 +77,18 @@
             }
 
             const reactRoute = index !== -1 ? url.substring(index) : "/";
-            window.location.href = reactRoute;
 
             console.log(`index: ${index}`);
             console.log(`reactRoute: ${reactRoute}`);
             console.log('finished redirecting');
+
+
+            console.log("waiting");
+            await sleep(5000);
+            console.log("Waited 5 seconds");
+
+
+            window.location.href = reactRoute;
         }
 
         // Extract the GitHub Pages relative path from the URL
