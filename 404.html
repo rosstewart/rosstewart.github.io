@@ -47,7 +47,7 @@
       location.replace('https://rosstewart.github.io/' + path);
     }
   </script> -->
-  <script>
+  <!-- <script>
     // Handle 404 not found for Single Page Apps for GitHub Pages
     (function (l) {
       if (l.search[1] === '/') {
@@ -57,6 +57,37 @@
         window.location = l.origin + l.pathname + decoded;
       }
     }(window.location))
+  </script> -->
+  <script>
+    // Extract the GitHub Pages relative path from the URL
+    // const pathSegments = window.location.pathname.split('/');
+    // Assuming the URL structure is 'https://<username>.github.io/<repo>/<react-route>'
+    // The third segment should be your React route
+    // if (pathSegments.length > 3) {
+    // for (var i = 3; i < pathSegments.length; i++) {
+    console.log('attempting to redirect:');
+    const url = window.location.pathname;
+    let index = -1;
+
+    for (let i = 0; i < 3; i++) {
+      index = url.indexOf('/', index + 1);
+
+      if (index === -1) {
+        break;
+      }
+    }
+
+    const reactRoute = index !== -1 ? url.substring(index) : "/";
+    window.location.href = reactRoute;
+
+    console.log('finished redirecting');
+
+    // }
+    // const reactRoute = pathSegments[3] || ''; // This will default to an empty string if the segment doesn't exist
+
+    // Redirect to that route within your React app
+    // window.location.href = '/' + reactRoute;
+    // }
   </script>
 
 </body>
