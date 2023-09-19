@@ -9,11 +9,16 @@ import ProfilePic from "../profile.png";
 // import { faCopy } from '@fortawesome/free-solid-svg-icons';
 
 const greeting = "Hello, I am Ross Stewart!";
-const bio1 = "A Software Engineer";
-const bio2 = "specialized in Mobile & Web Applications";
-const bio3 = "And third-year Computer Science student at the University of Miami";
+const bio1 = "An Undergraduate Researcher & Software Engineer";
+const bio2 = "specialized in Bioinformatics, Machine Learning, & Mobile/Web Applications,";
+const bio3 = "and a third-year Computer Science student at the University of Miami";
 
 const frameworksAndLibraries = [
+  {
+    name: "PyTorch",
+    getImageSrc: () => require("../assets/languageIcons/pytorch.png"),
+    url: "https://pytorch.org/"
+  },
   {
     name: "React",
     getImageSrc: () => require("../assets/languageIcons/react.png"),
@@ -23,11 +28,6 @@ const frameworksAndLibraries = [
     name: "Flutter",
     getImageSrc: () => require("../assets/languageIcons/flutter.png"),
     url: "https://flutter.dev/"
-  },
-  {
-    name: "PyTorch",
-    getImageSrc: () => require("../assets/languageIcons/pytorch.png"),
-    url: "https://pytorch.org/"
   },
   {
     name: "Unity",
@@ -59,24 +59,29 @@ const frontendLanguages = [
 ];
 const backendAndDataLanguages = [
   {
-    name: "Java",
-    getImageSrc: () => require("../assets/languageIcons/java.png"),
-    url: "https://www.java.com/en/"
-  },
-  {
     name: "Python",
     getImageSrc: () => require("../assets/languageIcons/python.png"),
     url: "https://www.python.org/"
   },
   {
-    name: "JavaScript",
-    getImageSrc: () => require("../assets/languageIcons/js.webp"),
-    url: "https://en.wikipedia.org/wiki/JavaScript"
-  },
-  {
     name: "R",
     getImageSrc: () => require("../assets/languageIcons/r.png"),
     url: "https://www.r-project.org/"
+  },
+  {
+    name: "PERL",
+    getImageSrc: () => require("../assets/languageIcons/perl.png"),
+    url: "https://www.perl.org/"
+  },
+  {
+    name: "Java",
+    getImageSrc: () => require("../assets/languageIcons/java.png"),
+    url: "https://www.java.com/en/"
+  },
+  {
+    name: "JavaScript",
+    getImageSrc: () => require("../assets/languageIcons/js.webp"),
+    url: "https://en.wikipedia.org/wiki/JavaScript"
   },
   {
     name: "C",
@@ -92,11 +97,6 @@ const backendAndDataLanguages = [
     name: "C++",
     getImageSrc: () => require("../assets/languageIcons/cpp.png"),
     url: "https://en.wikipedia.org/wiki/C%2B%2B"
-  },
-  {
-    name: "PERL",
-    getImageSrc: () => require("../assets/languageIcons/perl.png"),
-    url: "https://www.perl.org/"
   },
 ];
 const designTools = [
@@ -123,8 +123,8 @@ const AboutMeSection = () => (
       <Avatar height={[61, 90, 120]} width={[61, 90, 120]} src={ProfilePic} />
       <Heading as="h4" fontSize={["sm", "md", "lg"]}>{greeting}</Heading>
       <Box height={25}></Box>
-      <Heading textAlign="center" as="h1" fontSize={["xl", "2xl", "3xl", "4xl"]} margin="0 3vw">{bio1}</Heading>
-      <Heading textAlign="center" as="h1" fontSize={["lg", "xl", "2xl", "3xl"]} margin="0 3vw">{bio2}</Heading>
+      <Heading textAlign="center" as="h1" fontSize={["md", "lg", "xl", "2xl"]} margin="0 3vw">{bio1}</Heading>
+      <Heading textAlign="center" as="h1" fontSize={["sm", "md", "lg", "xl"]} margin="0 3vw">{bio2}</Heading>
       <Text textAlign="center" margin="0 3vw">{bio3}</Text>
       <Heading as="h6" fontSize={["md", "lg", "xl", "2xl"]} marginTop={["50px","80px"]} marginBottom="10px">Developer Skills</Heading>
       <LanguageWrapper heading="Frameworks & Libraries" languages={frameworksAndLibraries} />
