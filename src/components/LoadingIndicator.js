@@ -12,7 +12,7 @@ const LoadingIndicator = () => {
   //   }, 3000);
 
   //   return () => clearTimeout(timeout);
-  // }, []);
+  // }, []);f
 
   return (
     <div>

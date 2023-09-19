@@ -1,0 +1,91 @@
+.carousel-container {
+    width: min(80%,1000px);  /* Adjusting the width */
+    margin: 0 auto; /* Centering the carousel */
+    padding: 40px 0;
+    position: relative;
+}
+
+.carousel-container img {
+    width: 100%; /* Adjust as per requirement */
+    width: min(70%,1000px);
+    max-height: min(70vh,600px);
+    object-fit: cover; /* Ensures image doesn't stretch */
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+    transition: opacity 0.3s; /* Blend with background */
+}
+
+.carousel-container img:hover {
+    opacity: 0.8;  /* Blend with background on hover */
+}
+
+/* All dots: White with opacity */
+.slick-dots li button:before {
+    opacity: 0.6;   /* Adjust opacity as needed */
+    color: white;
+}
+
+/* Active (selected) dot: Full white */
+.slick-dots li.slick-active button:before {
+    opacity: 1;
+    color: white;
+}
+
+/* Hovered dot: White with some opacity */
+.slick-dots li button:hover:before {
+    opacity: 0.8;   /* Adjust opacity as needed for hover */
+    color: white;
+}
+
+.arrow-prev, .arrow-next {
+    color: white;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background for better visibility */
+    font-size: 25px;
+    position: absolute;
+    /* top: 50%; */
+    /* transform: translateY(-50%); */
+    cursor: pointer;
+    z-index: 100; /* Higher z-index to ensure they are above other elements */
+    padding: 5px 5px 5px 5px; /* Some padding to make it touch-friendly */
+    border-radius: 50%; /* Rounded background */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.arrow-prev:hover, .arrow-next:hover {
+    background: rgba(0, 0, 0, 0.8); /* Darken the background on hover for feedback */
+}
+
+.arrow-prev {
+    left: 10px;
+}
+
+.arrow-next {
+    right: 10px;
+}
+
+.slide {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+
+.slide-content {
+    color: white;
+    text-align: center;
+    padding: 20px 20px 10px;
+}
+
+.slide-content-button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.slide-content-button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}

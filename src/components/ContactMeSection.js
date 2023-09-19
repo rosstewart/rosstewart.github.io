@@ -51,14 +51,14 @@ const ContactMeSection = () => {
   return (
     <FullScreenSection
       isDarkBackground
-      background="linear-gradient(to top, #6d143b, #850058, #900083, #8200bc, #001eff)"
+      background="linear-gradient(to right, #1A237E, #311B92, #4A148C)"
       py={16}
       spacing={8}
       width="100%"
     >
         <VStack className={isMobile ? 'lightPadding' : ''} maxW={isMobile ? "513px" : "1280px"} w="100%" p={32} alignItems="flex-start">
           <Heading as="h1" id="contactme-section">
-            Contact me
+            Contact Me
           </Heading>
           <Box p={6} rounded="md" w="100%">
             <form>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar, Heading, VStack, Box, HStack } from "@chakra-ui/react";
+import { Avatar, Heading, VStack, Box, HStack, Text } from "@chakra-ui/react";
 import FullScreenSection from "./FullScreenSection";
 import ProfilePic from "../profile.png";
 // import Humanizer from "./Humanizer";
@@ -11,6 +11,7 @@ import ProfilePic from "../profile.png";
 const greeting = "Hello, I am Ross Stewart!";
 const bio1 = "A Software Engineer";
 const bio2 = "specialized in Mobile & Web Applications";
+const bio3 = "And third-year Computer Science student at the University of Miami";
 
 const frameworksAndLibraries = [
   {
@@ -111,12 +112,12 @@ const designTools = [
   },
 ];
 
-const LandingSection = () => (
+const AboutMeSection = () => (
   <FullScreenSection style={{ width: "100vw" }}
     justifyContent="center"
     alignItems="center"
     isDarkBackground
-    background="linear-gradient(to top, #6d143b, #850058, #900083, #8200bc, #001eff)"
+    background="linear-gradient(to bottom right, #0a2438, #004d40, #ff8c42)"
   >
     <VStack marginTop={["80px", "100px", "120px", "140px"]} marginBottom="150px">
       <Avatar height={[61, 90, 120]} width={[61, 90, 120]} src={ProfilePic} />
@@ -124,6 +125,7 @@ const LandingSection = () => (
       <Box height={25}></Box>
       <Heading textAlign="center" as="h1" fontSize={["xl", "2xl", "3xl", "4xl"]} margin="0 3vw">{bio1}</Heading>
       <Heading textAlign="center" as="h1" fontSize={["lg", "xl", "2xl", "3xl"]} margin="0 3vw">{bio2}</Heading>
+      <Text textAlign="center" margin="0 3vw">{bio3}</Text>
       <Heading as="h6" fontSize={["md", "lg", "xl", "2xl"]} marginTop={["50px","80px"]} marginBottom="10px">Developer Skills</Heading>
       <LanguageWrapper heading="Frameworks & Libraries" languages={frameworksAndLibraries} />
       <LanguageWrapper heading="Front-End Languages" languages={frontendLanguages} />
@@ -134,7 +136,7 @@ const LandingSection = () => (
   </FullScreenSection>
 );
 
-export default LandingSection;
+export default AboutMeSection;
 
 function LanguageWrapper({ heading, languages }) {
   return (

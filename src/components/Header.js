@@ -37,7 +37,7 @@ const socials = [
 ];
 
 const Header = () => {
-  const [useSmallHeader] = useMediaQuery('(max-width: 565px)');
+  const [useSmallHeader] = useMediaQuery('(max-width: 765px)');
   const useSmallHeaderRef = useRef(useSmallHeader);
   useSmallHeaderRef.current = useSmallHeader; // Update the ref whenever useSmallHeader changes
   const [showDropdown, setShowDropdown] = useState(false);
@@ -53,53 +53,61 @@ const Header = () => {
         navigate("/");
       } else {
         navigate("/");
-        window.scrollTo({ top: 0, behavior: "smooth" });
       }
+      window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
-    if (location.pathname.length > 1) {
-      navigate("/");
+    if (location.pathname != `/${anchor}`) {
+      navigate(`/${anchor}`);
+    } else {
     }
-    const id = `${anchor}-section`;
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  };
-
-  const handleScroll = () => {
-    // console.log(showDropdown);
-    const currentScrollY = window.scrollY;
-    const header = document.getElementById("header");
-
-    // if (showDropdown) {
-    //   // Don't hide menu if the dropdown is visible
-    //   header.style.transform = "translateY(0)";
-    //   previousScrollY.current = currentScrollY;
-    //   console.log(showDropdown ? "showDropdown" : "don't show dropdown");
-    //   return;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    return;
+    // Old Function to scroll to a specific section of the home page
+    // if (location.pathname.length > 1) {
+    //   let path = anchor === "contactme" ? "contact-me" : anchor;
+    //   navigate(`/#${path}`);
     // }
-
-    const dropdown = document.getElementById("headerDropdown");
-    if (dropdown != undefined && currentScrollY > previousScrollY.current) dropdown.style.transform = "translateY(-100px)";
-
-
-    header.style.transform = `translateY(${currentScrollY > previousScrollY.current ? "-100px" : 0})`;
-
-    // Use showDropdownRef.current to get the current value
-    if (dropdown != undefined && currentScrollY < previousScrollY.current && showDropdownRef.current) dropdown.style.transform = "translateY(166px)";
-
-    previousScrollY.current = currentScrollY;
+    // const id = `${anchor}-section`;
+    // const element = document.getElementById(id);
+    // if (element) {
+    //   element.scrollIntoView({
+    //     behavior: "smooth",
+    //     block: "start",
+    //   });
+    // }
   };
 
+  // const handleScroll = () => {
+  //   // console.log(showDropdown);
+  //   const currentScrollY = window.scrollY;
+  //   const header = document.getElementById("header");
 
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  //   // if (showDropdown) {
+  //   //   // Don't hide menu if the dropdown is visible
+  //   //   header.style.transform = "translateY(0)";
+  //   //   previousScrollY.current = currentScrollY;
+  //   //   console.log(showDropdown ? "showDropdown" : "don't show dropdown");
+  //   //   return;
+  //   // }
+
+  //   const dropdown = document.getElementById("headerDropdown");
+  //   if (dropdown != undefined && currentScrollY > previousScrollY.current) dropdown.style.transform = "translateY(-100px)";
+
+
+  //   header.style.transform = `translateY(${currentScrollY > previousScrollY.current ? "-100px" : 0})`;
+
+  //   // Use showDropdownRef.current to get the current value
+  //   if (dropdown != undefined && currentScrollY < previousScrollY.current && showDropdownRef.current) dropdown.style.transform = "translateY(166px)";
+
+  //   previousScrollY.current = currentScrollY;
+  // };
+
+
+  // useEffect(() => {
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => window.removeEventListener('scroll', handleScroll);
+  // }, []);
 
   const handleDropdownClick = () => {
     const dropdown = document.getElementById("headerDropdown");
@@ -154,10 +162,10 @@ export default Header;
 
 function PageLinks({ handleClick, id }) {
   const style = id === "headerDropdown" ? {
-    top: "-100px",
+    top: "-110px",
     left: 0,
     right: 0,
-    translateY: "-100px",
+    translateY: "-110px",
     transitionProperty: "transform",
     transitionDuration: ".3s",
     transitionTimingFunction: "ease-in-out",
@@ -165,13 +173,16 @@ function PageLinks({ handleClick, id }) {
     backgroundColor: "#18181b",
     position: "fixed",
     pb: "10px",
-    color: "white"
+    color: "white",
+    fontSize: ["8px", "16px", "16px", "16px"],
   } : {};
   return (
     <HStack id={id} spacing={8} justifyContent="center" {...style}>
       <button onClick={handleClick("home")}>Home</button>
-      <a href="/#projects" onClick={handleClick("projects")}>Projects</a>
-      <a href="/#contact-me" onClick={handleClick("contactme")}>Contact Me</a>
+      <button onClick={handleClick("research")}>Research</button>
+      <button onClick={handleClick("projects")}>Projects</button>
+      <button onClick={handleClick("about-me")}>About Me</button>
+      <button onClick={handleClick("contact-me")}>Contact Me</button>
     </HStack>
   )
 }

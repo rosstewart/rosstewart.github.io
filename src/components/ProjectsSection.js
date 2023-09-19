@@ -6,14 +6,27 @@ import {
   faGithub,
   faAppStoreIos,
 } from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFileAlt, faLink } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faFileAlt, faLink } from "@fortawesome/free-solid-svg-icons";
 
 const projects = [
   {
+    title: "AI Humanizer",
+    description:
+      "Software to convert normal AI-generated text into text that is undetectable by AI detection algorithms",
+    getImageSrc: () => require("../assets/projectImages/humanizer.png"),
+    socials: [
+      // {
+      //   icon: faGithub,
+      //   url: "https://github.com/rosstewart/",
+      // },
+    ],
+    clickable: true,
+  },
+  {
     title: "Gym-Brain",
     description:
-      "Gym-Brain is a Social Lifting Platform, Smart Workout Planner and Tracker, and a Gym Finder. With hundreds of exercises in the library, you can generate a workout routine, or customize your own depending on your goals. Share your workouts and progress with your friends and view each other's routines.",
+      "Social Lifting Platform, Smart Workout Planner and Tracker, and a Gym Finder. With hundreds of exercises in the library, you can generate a workout routine, or customize your own depending on your goals. Share your workouts and progress with your friends and view each other's routines.",
     getImageSrc: () => require("../assets/projectImages/gymBrainSearch.png"),
     socials: [
       {
@@ -26,36 +39,6 @@ const projects = [
       }
     ],
     clickable: false,
-  },
-  {
-    title: "PICNIC",
-    description:
-      "Protein structure modelling using machine learning concepts: Refining AlphaFold TS models using 3D residual and convolutional neural networks",
-    getImageSrc: () => require("../assets/projectImages/casp15.png"),
-    socials: [
-      {
-        icon: faGithub,
-        url: "https://github.com/rosstewart/CASP15",
-      },
-      {
-        icon: faFileAlt,
-        url: "https://predictioncenter.org/casp15/doc/CASP15_Abstracts.pdf#page=193",
-      }
-    ],
-    clickable: false,
-  },
-  {
-    title: "AI Humanizer",
-    description:
-      "Software to convert normal AI-generated text into text that is undetectable by AI detection algorithms",
-    getImageSrc: () => require("../assets/projectImages/humanizer.png"),
-    socials: [
-      {
-        icon: faGithub,
-        url: "https://github.com/rosstewart/",
-      },
-    ],
-    clickable: true,
   },
   {
     title: "Restaurant Web Application",
@@ -113,14 +96,14 @@ const projects = [
 const ProjectsSection = () => {
   return (
     <FullScreenSection
-      background="linear-gradient(to bottom, #6d143b, #850058, #900083, #8200bc, #001eff)"
+      background="linear-gradient(to right, #000000, #000033)"
       isDarkBackground
       p={8}
       alignItems="flex-start"
       spacing={8}
     >
-      <Heading as="h1" id="projects-section">
-        Featured Projects
+      <Heading as="h1" id="projects-section" marginTop="55px">
+        All Projects
       </Heading>
       <Box
         display="grid"
@@ -129,6 +112,7 @@ const ProjectsSection = () => {
           md: "repeat(2, minmax(0, 1fr))",  // Two columns on screens of width md and larger
         }}
         gridGap={8}
+        marginBottom="100px"
       >
         {projects.map((project) => (
           <Card

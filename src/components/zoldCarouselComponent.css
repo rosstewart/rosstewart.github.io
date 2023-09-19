@@ -1,0 +1,99 @@
+.carousel-container {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(to bottom, #202020, #003545);
+    padding: 100px 0;
+}
+
+
+.carousel-container img {
+    max-width: 50%;
+    max-height: 80vh;
+    float: right;
+    margin: 0 auto;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); /* Soft shadow for blending */
+}
+
+.slide {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.slide-content {
+    max-width: 50%;
+    padding: 0 20px;
+}
+
+@media (max-width: 768px) {
+    .carousel-container img {
+        max-width: 100%;
+        margin-top: 20px;
+    }
+    .slide {
+        flex-direction: column;
+    }
+
+    .slide-content {
+        max-width: 100%;
+    }
+}
+
+/* Style for normal dots */
+.slick-dots li button:before {
+    color: #aaa;  /* some light grey or another color for non-active dots */
+    opacity: 0.75;
+}
+
+/* Style for the currently selected dot */
+.slick-dots li.slick-active button:before {
+    color: white;
+    opacity: 1;
+}
+
+
+/* Arrows styling */
+.arrow-prev, .arrow-next {
+    background: rgba(0, 0, 0, 0.3);  /* lighter background for arrows */
+    color: white;
+    border-radius: 50%;
+    width: 50px;  
+    height: 50px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px; /* Increased font size for clearer arrow */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 10; 
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Shadow for visibility against any background */
+}
+
+.arrow-prev {
+    left: 2%; /* Adjust as needed for left positioning */
+}
+
+.arrow-next {
+    right: 2%; /* Adjust as needed for right positioning */
+}
+
+/* Ensure the carousel container is positioned relatively to place the arrows correctly */
+.carousel-container .slick-slider {
+    position: relative;
+}
+
+/* Override react-slick styles to make arrows visible */
+.carousel-container .slick-prev, .carousel-container .slick-next {
+    z-index: 10;
+    width: auto;
+    height: auto;
+    background: transparent;
+    padding: 0;
+}
+
+.carousel-container .slick-prev:before, .carousel-container .slick-next:before {
+    content: none;  /* Remove default arrow */
+}

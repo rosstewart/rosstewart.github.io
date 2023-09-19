@@ -57,10 +57,10 @@ const Card = ({ title, description, imageSrc, socials, clickable }) => {
         </HStack>
         <Text as="h6" size="sm" fontWeight="normal" color="gray">{description}</Text>
         <button onClick={() => navigateIfClickable()}>
-          <HStack spacing={3} paddingTop="5px" paddingBottom="15px">
+          {clickable && <HStack spacing={3} paddingTop="5px" paddingBottom="15px">
             <Text display="inline" as="h6" size="sm" fontWeight="light" color="black">See more</Text>
             <FontAwesomeIcon display="inline" icon={faArrowRight} size="1x" color="black" />
-          </HStack>
+          </HStack>}
         </button>
 
       </Box>
