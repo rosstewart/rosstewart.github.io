@@ -41,7 +41,7 @@ function HomePage() {
         <>
             <Header />
             <main>
-                <CarouselComponent style={{ width: "100vw" }} />
+                <CarouselComponent style={{ width: "100vw",  }} />
                 {/* <LandingSection style={{ width: "100vw" }} /> */}
                 {/* <ResearchSection style={{ width: "100vw" }} /> */}
                 {/* <ProjectsSection style={{ width: "100vw" }} />

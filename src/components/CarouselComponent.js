@@ -82,12 +82,22 @@ function CarouselComponent() {
     return (
 
         <div style={{ background: "radial-gradient(circle, #003366, #002240)", minHeight: "100vh" }}>
-            <Box className="carousel-container" paddingTop={["90px", "100px", "120px"]}>
-                <Heading as="h2" size={["sm", "md", "lg"]} color="white">Featured Research & Projects</Heading>
-                <HStack style={{ marginBottom: "40px", marginTop: "20px" }} spacing="15px">
-                    <button className="slide-content-button" onClick={() => navigate("/research")}>All Research</button>
-                    <button className="slide-content-button" onClick={() => navigate("/projects")}>All Projects</button>
-                </HStack>
+            <Box className="carousel-container">
+                {/* <div style={{ display: "flex", alignItems: "flex-start", flexWrap: "wrap", gap: "20px" }}>
+                    <Heading as="h2" size={["sm", "md", "lg"]} paddingTop={"90px"} color="white">Featured Research & Projects</Heading>
+                    <HStack spacing="15px">
+                        <button className="slide-content-button" onClick={() => navigate("/research")}>All Research</button>
+                        <button className="slide-content-button" onClick={() => navigate("/projects")}>All Projects</button>
+                    </HStack>
+                </div> */}
+                <div className="carousel-content-container">
+                    <Heading as="h2" className="content-heading" size={["sm","md","md", "lg"]} color="white">Featured Research & Projects</Heading>
+                    <HStack className="button-group">
+                        <button className="slide-content-button" onClick={() => navigate("/research")}>All Research</button>
+                        <button className="slide-content-button" onClick={() => navigate("/projects")}>All Projects</button>
+                    </HStack>
+                </div>
+
                 <Slider {...settings}>
                     {projects.map((project) => (<Slide title={project.title} subtitle={project.description} image={project.getImageSrc()} navigateIfClickable={navigateIfClickable} />)
                     )}
@@ -102,7 +112,7 @@ function Slide({ title, subtitle, image, navigateIfClickable }) {
         navigateIfClickable(title);
     };
     return <div className="slide">
-        <button onClick={handleReadMore}><img src={image} alt="First Slide" /></button>
+        <button onClick={handleReadMore} className="slide-image-button"><img src={image} alt="First Slide" /></button>
         <div className="slide-content">
             <Heading as="h2" size={["lg", "xl", "2xl"]} marginBottom="20px">{title}</Heading>
             <Text margin="auto" maxW="800px" as="p" fontSize={["12px", "15px", "18px"]} marginBottom="20px">{subtitle}</Text>

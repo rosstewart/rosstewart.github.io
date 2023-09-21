@@ -51,15 +51,12 @@ const Header = () => {
     if (anchor === "home") {
       if (location.pathname.length > 1) {
         navigate("/");
-      } else {
-        navigate("/");
       }
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
     if (location.pathname != `/${anchor}`) {
       navigate(`/${anchor}`);
-    } else {
     }
     window.scrollTo({ top: 0, behavior: "smooth" });
     return;
