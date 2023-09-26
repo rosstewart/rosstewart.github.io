@@ -13,7 +13,7 @@ function Humanizer() {
     const [outputValue, setOutputValue] = useState('');
     const [copyFeedback, setCopyFeedback] = useState(false);
     const [showError, setShowError] = useState('');
-    const maxCharacters = 2500
+    const maxCharacters = 1750
 
     const validateInput = () => {
         if (inputValue.length === 0) {
