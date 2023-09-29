@@ -136,7 +136,7 @@ function Humanizer() {
                 </div>
 
                 {/* Output Section */}
-                {outputValue.length != 0 && <div style={{
+                {outputValue !== undefined && outputValue.length != 0 && <div style={{
                     flex: '1',
                     display: 'flex',
                     flexDirection: 'column',
