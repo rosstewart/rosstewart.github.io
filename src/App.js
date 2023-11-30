@@ -10,6 +10,7 @@ import ResearchPage from './pages/ResearchPage';
 import AboutMePage from './pages/AboutMePage';
 import ProjectsPage from './pages/ProjectsPage';
 import ContactMePage from './pages/ContactMePage';
+import Picnic2LocalPaperInPreparationPage from './pages/Picnic2-LocalPaperInPreparation'
 // import { useEffect } from "react";
 // import { useLocation } from "react-router-dom";
 
@@ -26,6 +27,7 @@ function App() {
             <Route path="/about-me" element={<AboutMePage />} />
             <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/contact-me" element={<ContactMePage />} />
+            <Route path="/research/PICNIC2-LOCAL/paper-in-preparation" element={<Picnic2LocalPaperInPreparationPage />} />
           </Routes>
         </Router>
         <Alert />
