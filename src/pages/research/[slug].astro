@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import { Image } from 'astro:assets';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const items = await getCollection('research');
+  return items.map((p) => ({ params: { slug: p.id }, props: { project: p } }));
+}
+interface Props { project: CollectionEntry<'research'> }
+const { project } = Astro.props;
+const d = project.data;
+const { Content } = await render(project);
+---
+<BaseLayout title={d.title} description={d.tagline}>
+  <article class="container page">
+    <nav aria-label="Breadcrumb" class="crumbs"><a href="/research/">Research</a> <span aria-hidden="true">/</span> <span aria-current="page">{d.title}</span></nav>
+    <header class="head">
+      <div class="title-row">
+        {d.logo && <Image class="logo" src={d.logo} alt="" height={56} />}
+        <h1>{d.title}</h1>
+      </div>
+      <p class="tagline">{d.tagline}</p>
+      <div class="meta">
+        {d.status && <span class="chip">{d.status}</span>}
+        {d.links.length > 0 && (
+          <ul class="btn-links" aria-label={`${d.title} links`}>
+            {d.links.map((l) => (
+              <li><a class="btn-link" href={l.url}>{l.label}<Icon name="external" size={13} /></a></li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </header>
+
+    {d.figure && (
+      <figure class="figure card">
+        <Image src={d.figure} alt={d.figureAlt ?? ''} widths={[800, 1400, 2000]} sizes="(max-width: 70rem) 100vw, 70rem" />
+        {d.figureCaption && <figcaption>{d.figureCaption}</figcaption>}
+      </figure>
+    )}
+
+    <div class="prose">
+      <Content />
+    </div>
+    <p class="back"><a href="/publications/">See all publications</a> · <a href="/research/">Back to research</a></p>
+  </article>
+</BaseLayout>
+<style>
+  .crumbs { font-size: 0.9rem; color: var(--muted); margin-bottom: 1.5rem; }
+  .head { max-width: 46rem; margin-bottom: 2rem; }
+  .title-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
+  .title-row h1 { margin: 0; }
+  .logo { height: 56px; width: auto; }
+  :global(:root[data-theme='dark']) .logo { background: #fff; padding: 6px 10px; border-radius: 8px; }
+  .tagline { font-size: 1.25rem; font-family: var(--font-serif); margin-bottom: 1rem; }
+  .meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+  .figure { margin: 0 0 2.5rem; padding: 1rem; background: #fff; overflow: hidden; }
+  .figure :global(img) { margin-inline: auto; max-height: 75vh; width: auto; }
+  figcaption { color: #4a5758; font-size: 0.92rem; margin-top: 0.75rem; text-align: center; }
+  .back { margin-top: 2.5rem; font-size: 0.95rem; }
+</style>

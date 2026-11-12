@@ -1,0 +1,85 @@
+# Publications, newest first. "Stewart, R." is bolded automatically.
+# Set `selected: true` to feature a paper on the home page.
+- id: psb2027-indels
+  title: Classification of in-frame indels at scale using calibrated functional and computational evidence
+  authors: Abderrazzaq, H., Stewart, R., Tejura, M., McEwen, A.E., Casadei, S., Snyder, M.W., Smith, N., Rubin, A.F., Fowler, D.M., Starita, L.M., Radivojac, P.
+  venue: Pacific Symposium on Biocomputing (PSB 2027)
+  year: 2027
+  status: in press
+
+- id: recomb2026-mutpred-ppi
+  title: Predicting interaction-specific protein–protein interaction perturbations by missense variants with MutPred-PPI
+  authors: Stewart, R., et al.
+  venue: 30th Annual International Conference on Research in Computational Molecular Biology (RECOMB 2026)
+  year: 2026
+  firstAuthor: true
+  selected: true
+  links:
+    - { label: Paper, url: "https://doi.org/10.64898/2025.12.20.695738" }
+    - { label: Proceedings, url: "https://recomb.org/proceedings/proceedings/2030-2026/2026/" }
+    - { label: Code, url: "https://github.com/rosstewart/MutPred-PPI" }
+    - { label: Web server, url: "https://mutpred.mutdb.org/mutpredppi" }
+
+- id: tejura2026-vus
+  title: A scalable approach to resolving variants of uncertain significance
+  authors: Tejura, M., Chen, Y., McEwen, A.E., Stewart, R., Sverchkov, Y., Laval, F., et al.
+  venue: bioRxiv 2026.02.14.705848
+  year: 2026
+  status: preprint
+  note: one of 6 co-first authors
+  firstAuthor: true
+  selected: true
+  links:
+    - { label: Preprint, url: "https://doi.org/10.64898/2026.02.14.705848" }
+    - { label: ExCALIBR, url: "https://excalibr.org" }
+
+- id: chen2026-calibration
+  title: Gene- and domain-aware calibration increases the clinical utility of variant effect predictors
+  authors: Chen, Y., Fayer, S., Jain, S., Benazouz, M., Sverchkov, Y., Stone, J., Sharma, H., Bergquist, T., Stewart, R., Mooney, S.D., Craven, M., Radivojac, P., Starita, L.M., Fowler, D.M., Pejaver, V.
+  venue: bioRxiv 2026.02.17.706269
+  year: 2026
+  status: preprint
+  links:
+    - { label: Preprint, url: "https://doi.org/10.64898/2026.02.17.706269" }
+
+- id: biar2026-tsc2
+  title: An integrated, scaled approach to resolve TSC2 variants of uncertain significance
+  authors: Biar, C.G., Wang, Z.R., Camp, N.D., Holmes, D.L., Wheelock, M.K., Pendyala, S., McGee, A.V., Gupta, P., McEwen, A.E., Tejura, M., Richardson, M.E., Weyandt, J.D., Coleman, T., Stewart, R., Zeiberg, D., Vandi, A.J., Dawson, S., Radivojac, P., Starita, L.M., Carvill, G.L., James, R.G., Fowler, D.M., Calhoun, J.D.
+  venue: Nature Communications 17, 8474
+  year: 2026
+  links:
+    - { label: Article, url: "https://doi.org/10.1038/s41467-026-75442-6" }
+
+- id: casadei2026-sge
+  title: Saturation genome editing reveals the functional impact of RAD51D and XRCC2 variants
+  authors: Casadei, S., Snyder, M., Woo, I., Smith, N., Best, S., Garge, R., Rodriguez-Salas, L., Wenman, C., Seid, O., Hosokai, A., Xu, A., Tejura, M., Gupta, P., Heidl, S., Muffley, L., Ranchalis, J., Stewart, R., Goff, N., Hemker, S., Baierl, J., Dicks, E., Pharoah, P., Bjornkjaer, L., Roenlund, K., Kitzman, J., Bernstein, K., Stergachis, A., Radivojac, P., Fowler, D., Starita, L.
+  venue: bioRxiv 2026.06.12.731983
+  year: 2026
+  status: preprint
+  links:
+    - { label: Preprint, url: "https://doi.org/10.64898/2026.06.12.731983" }
+
+- id: zeiberg2025-excalibr
+  title: Gene-based calibration of high-throughput functional assays for clinical variant classification
+  authors: Zeiberg, D., Stewart, R., et al.
+  venue: bioRxiv 2025.04.29.651326
+  year: 2025
+  status: preprint
+  note: co-first author
+  firstAuthor: true
+  selected: true
+  links:
+    - { label: Preprint, url: "https://doi.org/10.1101/2025.04.29.651326" }
+    - { label: ExCALIBR, url: "https://excalibr.org" }
+    - { label: Code, url: "https://github.com/rosstewart/exCALIBR" }
+
+- id: bibm2024-picnic
+  title: "PICNIC: refinement of AlphaFold2 tertiary structure predictions using deep 3D residual neural networks"
+  authors: Stewart, R., Zhao, C., et al.
+  venue: IEEE International Conference on Bioinformatics and Biomedicine (BIBM 2024), Lisbon, Portugal
+  year: 2024
+  note: co-first author
+  firstAuthor: true
+  links:
+    - { label: Paper, url: "https://doi.org/10.1109/bibm62325.2024.10822235" }
+    - { label: Code, url: "https://github.com/zwang-bioinformatics/PICNIC" }

@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import { Image } from 'astro:assets';
+import { getCollection, render } from 'astro:content';
+const items = (await getCollection('archive')).sort((a, b) => a.data.order - b.data.order);
+const rendered = await Promise.all(items.map(async (i) => ({ item: i, Content: (await render(i)).Content })));
+---
+<BaseLayout title="Earlier projects" description="Earlier software projects by Ross C. Stewart, including Gym Brain, HoloGIS, and other undergraduate work.">
+  <div class="container page">
+    <header class="page-intro">
+      <h1>Earlier projects</h1>
+      <p>
+        Software projects from my undergraduate years: apps, XR, and web development.
+        For current work, see <a href="/research/">Research</a>.
+      </p>
+    </header>
+    <ul class="grid">
+      {rendered.map(({ item, Content }) => (
+        <li class="card proj">
+          {item.data.image && (
+            <div class="media">
+              <Image src={item.data.image} alt={item.data.imageAlt ?? ''} widths={[400, 700]} sizes="(max-width: 48rem) 100vw, 25vw" />
+            </div>
+          )}
+          <div class="body">
+            <h2 class="title">{item.data.title} <span class="muted year">{item.data.year}</span></h2>
+            <div class="desc"><Content /></div>
+            {item.data.tags.length > 0 && (
+              <p class="tags"><span class="visually-hidden">Technologies: </span>{item.data.tags.join(' · ')}</p>
+            )}
+            {item.data.links.length > 0 && (
+              <ul class="btn-links" aria-label={`${item.data.title} links`}>
+                {item.data.links.map((l) => (
+                  <li><a class="btn-link" href={l.url}>{l.label}{l.url.startsWith('http') && <Icon name="external" size={13} />}</a></li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</BaseLayout>
+<style>
+  .grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); gap: 1.25rem; }
+  .proj { overflow: hidden; display: flex; flex-direction: column; }
+  .media { aspect-ratio: 16 / 10; overflow: hidden; border-bottom: 1px solid var(--border); }
+  .media :global(img) { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .body { padding: 1rem 1.15rem 1.2rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
+  .title { font-family: var(--font-sans); font-size: 1.05rem; margin: 0; letter-spacing: 0; }
+  .year { font-weight: 400; font-size: 0.9rem; }
+  .desc { font-size: 0.95rem; flex: 1; }
+  .desc :global(p) { margin: 0; }
+  .tags { font-size: 0.85rem; color: var(--muted); margin: 0; }
+</style>

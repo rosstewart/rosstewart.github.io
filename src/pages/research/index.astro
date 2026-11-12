@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ResearchCard from '../../components/ResearchCard.astro';
+import { getCollection } from 'astro:content';
+const all = (await getCollection('research')).sort((a, b) => a.data.order - b.data.order);
+const phd = all.filter((r) => r.data.era === 'phd');
+const ug = all.filter((r) => r.data.era === 'undergrad');
+---
+<BaseLayout title="Research" description="Research by Ross C. Stewart on variant effect prediction, protein–protein interactions, and functional assay calibration.">
+  <div class="container page">
+    <header class="page-intro">
+      <h1>Research</h1>
+      <p>
+        I build machine learning methods for interpreting genetic variation: predicting the
+        molecular consequences of missense variants and turning high-throughput experimental
+        data into calibrated clinical evidence.
+      </p>
+    </header>
+
+    <section aria-labelledby="phd-heading">
+      <div class="section-head"><h2 id="phd-heading">Ph.D. research · Radivojac Lab</h2></div>
+      <div class="grid">{phd.map((r) => <ResearchCard project={r} />)}</div>
+    </section>
+
+    <section class="section" aria-labelledby="ug-heading">
+      <div class="section-head"><h2 id="ug-heading">Undergraduate research · Wang Lab, University of Miami</h2></div>
+      <div class="grid">{ug.map((r) => <ResearchCard project={r} />)}</div>
+    </section>
+  </div>
+</BaseLayout>
+<style>
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); gap: 1.25rem; }
+</style>

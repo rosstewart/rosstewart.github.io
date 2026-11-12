@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+# rosstewart.github.io
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Personal academic website of Ross C. Stewart, built with [Astro](https://astro.build) and
+deployed to GitHub Pages by GitHub Actions on every push to `main`.
 
-## Available Scripts
+## Develop
 
-In the project directory, you can run:
+```bash
+nvm use            # Node 24 (see .nvmrc)
+npm install
+npm run dev        # http://localhost:4321
+npm run build      # static output in dist/
+npm run preview    # serve dist/
+```
 
-### `npm start`
+## Editing content
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Most updates only need a YAML or Markdown file. Entries appear in the same order as in the file.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+| What | Where |
+| --- | --- |
+| Publications | `src/data/publications.yaml`: `selected: true` features a paper on the home page; `firstAuthor: true` includes it in the first/co-first filter. "Stewart, R." is bolded automatically. |
+| Talks and posters | `src/data/talks.yaml` |
+| Awards | `src/data/awards.yaml` (the first three appear on the home page) |
+| Reviewing and service | `src/data/service.yaml` |
+| Education, experience, teaching | `src/data/positions.yaml` |
+| Research projects | `src/content/research/*.md` (one page each, at `/research/<file-name>/`) |
+| Earlier projects | `src/content/archive/*.md` |
+| Bio, name, links | `src/pages/index.astro` and `src/lib/site.ts` |
+| CV PDF | replace `public/cv.pdf` |
+| Images | `src/assets/` (optimized automatically at build time) |
 
-### `npm test`
+Example publication:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```yaml
+- id: my-paper-2027          # any unique id
+  title: Paper title
+  authors: Doe, J., Stewart, R., et al.
+  venue: Conference or journal (ABBR 2027)
+  year: 2027
+  status: preprint           # published | in press | preprint
+  note: co-first author      # optional
+  firstAuthor: true          # optional
+  selected: true             # optional
+  links:
+    - { label: Paper, url: "https://doi.org/..." }
+    - { label: Code, url: "https://github.com/..." }
+```
 
-### `npm run build`
+## Notes
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Old hash-routed URLs from the previous React site (e.g. `/#/projects/gym-brain/privacy-policy`)
+  are redirected by a small script in `src/pages/index.astro`.
+- The Gym Brain privacy policy lives at `/projects/gym-brain/privacy-policy/`.
+- The previous React version of the site is preserved in git history (commit `fb870cc`).

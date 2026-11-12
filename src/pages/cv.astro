@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { getOrdered } from '../lib/collections';
+const positions = await getOrdered('positions');
+const awards = await getOrdered('awards');
+const by = (s: string) => positions.filter((p) => p.data.section === s);
+const sections = [
+  { id: 'education', label: 'Education', items: by('education') },
+  { id: 'research', label: 'Research experience', items: by('research') },
+  { id: 'industry', label: 'Industry experience', items: by('industry') },
+  { id: 'teaching', label: 'Teaching', items: by('teaching') },
+];
+---
+<BaseLayout title="CV" description="Curriculum vitae of Ross C. Stewart.">
+  <div class="container page">
+    <header class="page-intro">
+      <h1>Curriculum vitae</h1>
+      <p>A summary of my CV. For the full version, including publications, talks, and service, download the PDF.</p>
+      <a class="btn-link dl" href="/cv.pdf"><Icon name="download" size={15} /> Download CV <span class="visually-hidden">(PDF)</span></a>
+    </header>
+
+    {sections.map((s) => (
+      <section class="section" aria-labelledby={s.id}>
+        <div class="section-head"><h2 id={s.id}>{s.label}</h2></div>
+        <ul class="entry-list">
+          {s.items.map((p) => (
+            <li>
+              <span class="when">{p.data.dates}</span>
+              <div>
+                <strong>{p.data.title}</strong>
+                <div class="muted">{p.data.org}{p.data.location && ` · ${p.data.location}`}</div>
+                {p.data.bullets.length > 0 && <ul>{p.data.bullets.map((b) => <li>{b}</li>)}</ul>}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+
+    <section class="section" aria-labelledby="awards">
+      <div class="section-head"><h2 id="awards">Awards &amp; honors</h2></div>
+      <ul class="entry-list">
+        {awards.map((a) => (
+          <li>
+            <span class="when">{a.data.year}</span>
+            <div><strong>{a.data.title}</strong>{a.data.detail && <div class="muted">{a.data.detail}</div>}</div>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="skills">
+      <div class="section-head"><h2 id="skills">Skills</h2></div>
+      <dl class="skills">
+        <dt>Technical</dt><dd>Python, PyTorch, R, SQL, Git, Docker, deep learning, protein language models</dd>
+        <dt>Domains</dt><dd>Bioinformatics, protein structure, variant effect prediction, protein–protein interactions</dd>
+      </dl>
+    </section>
+
+    <p class="more">See also: <a href="/publications/">Publications</a> · <a href="/talks/">Talks &amp; posters</a> · <a href="/teaching-service/">Teaching &amp; service</a></p>
+  </div>
+</BaseLayout>
+<style>
+  .dl { font-size: 0.95rem; padding: 0.5rem 0.95rem; }
+  .entry-list > li { grid-template-columns: 11rem 1fr; }
+  @media (max-width: 36rem) { .entry-list > li { grid-template-columns: 1fr; } }
+  .skills { display: grid; grid-template-columns: 11rem 1fr; gap: 0.5rem 1rem; margin: 0; }
+  .skills dt { font-weight: 600; }
+  .skills dd { margin: 0; }
+  @media (max-width: 36rem) { .skills { grid-template-columns: 1fr; } .skills dd { margin-bottom: 0.5rem; } }
+  .more { margin-top: 3rem; }
+</style>

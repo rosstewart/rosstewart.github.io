@@ -1,0 +1,11 @@
+# Talks and posters, newest first.
+- { id: necb-2026, kind: Talk, event: New England Computational Biology (NECB), year: "2026" }
+- { id: igvf-2026-talk, kind: Talk, event: Impact of Genomic Variation on Function (IGVF) Consortium Meeting, year: "2026" }
+- { id: recomb-2026, kind: Talk, event: "RECOMB 2026, Thessaloniki, Greece", year: "2026", detail: "Proceedings paper: MutPred-PPI" }
+- { id: recomb-genetics-2026, kind: Talk, event: RECOMB-Genetics Satellite Conference, year: "2026" }
+- { id: belbi-2026, kind: Flash talk, event: Belgrade Bioinformatics Conference (BelBi), year: "2026", detail: "Best Flash Talk / Poster Presentation Award" }
+- { id: ismb-2026, kind: Poster, event: Intelligent Systems for Molecular Biology (ISMB), year: "2026" }
+- { id: iscb-briefing-2026, kind: Poster, event: "ISCB Congressional Briefing, Washington, D.C.", year: "2026", detail: "Presented to members of Congress" }
+- { id: ashg, kind: Poster, event: American Society of Human Genetics (ASHG) Annual Meeting, year: "2025, 2026" }
+- { id: igvf-posters, kind: Poster, event: Impact of Genomic Variation on Function (IGVF) Consortium Meeting, year: "2025, 2026" }
+- { id: cagi-2025, kind: Poster, event: Critical Assessment of Genome Interpretation (CAGI), year: "2025" }

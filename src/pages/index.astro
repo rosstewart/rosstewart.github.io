@@ -1,0 +1,174 @@
+---
+import { getOrdered } from '../lib/collections';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import ResearchCard from '../components/ResearchCard.astro';
+import PubEntry from '../components/PubEntry.astro';
+import Icon from '../components/Icon.astro';
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import portrait from '../assets/portrait.png';
+import { SITE, SOCIAL } from '../lib/site';
+
+const research = (await getCollection('research', (r) => r.data.era === 'phd'))
+  .sort((a, b) => a.data.order - b.data.order);
+const selected = (await getOrdered('publications')).filter((p) => p.data.selected);
+const awards = (await getOrdered('awards')).slice(0, 3);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: SITE.name,
+  jobTitle: SITE.role,
+  affiliation: { '@type': 'CollegeOrUniversity', name: 'Northeastern University' },
+  alumniOf: { '@type': 'CollegeOrUniversity', name: 'University of Miami' },
+  email: `mailto:${SITE.email}`,
+  url: Astro.site?.toString(),
+  sameAs: SOCIAL.filter((s) => s.url.startsWith('http')).map((s) => s.url),
+  identifier: { '@type': 'PropertyValue', propertyID: 'ORCID', value: SITE.orcid },
+};
+---
+<BaseLayout jsonLd={jsonLd}>
+  <script is:inline slot="head">
+    // Redirect links from the old hash-routed site (e.g. /#/projects/gym-brain/privacy-policy).
+    (() => {
+      const h = location.hash;
+      if (!h.startsWith('#/')) return;
+      const map = {
+        '#/projects/gym-brain/privacy-policy': '/projects/gym-brain/privacy-policy/',
+        '#/research/PICNIC2-LOCAL/paper-in-preparation': '/research/picnic/',
+        '#/research': '/research/',
+        '#/projects/ai-humanizer': '/projects/',
+        '#/projects': '/projects/',
+        '#/about-me': '/',
+        '#/contact-me': '/',
+      };
+      const key = Object.keys(map).find((k) => h === k || h.startsWith(k + '/') || h.startsWith(k + '?'));
+      location.replace(key ? map[key] : '/');
+    })();
+  </script>
+
+  <div class="container page">
+    <section class="hero" aria-labelledby="intro-heading">
+      <Image
+        class="portrait"
+        src={portrait}
+        alt="Portrait of Ross Stewart"
+        widths={[240, 480]}
+        sizes="240px"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <div class="intro">
+        <h1 id="intro-heading">{SITE.name}</h1>
+        <p class="role">
+          {SITE.role}<br />
+          <span class="muted">Northeastern University · Khoury College of Computer Sciences</span>
+        </p>
+        <div class="bio">
+          <p>
+            I'm a Ph.D. student in Computer Science at Northeastern University, advised by
+            Predrag Radivojac. I develop machine learning methods that connect genetic variation
+            to molecular function and clinical interpretation.
+          </p>
+          <p>
+            My current work predicts how missense variants disrupt specific protein–protein
+            interactions (<a href="/research/mutpred-ppi/">MutPred-PPI</a>, RECOMB 2026),
+            calibrates high-throughput functional assays for clinical variant classification
+            (<a href="/research/excalibr/">ExCALIBR</a>), and uncovers the residue-level
+            mechanisms behind pathogenic variants.
+          </p>
+          <p>
+            Before Northeastern, I earned a B.S. in Computer Science at the University of Miami
+            (Cum Laude, Phi Beta Kappa), where I built deep learning models to{' '}
+            <a href="/research/picnic/">refine AlphaFold2 structure predictions</a>.
+          </p>
+        </div>
+        <SocialLinks />
+        <p class="cta">
+          <a class="btn-primary" href="/cv.pdf"><Icon name="download" size={16} /> Download CV <span class="visually-hidden">(PDF)</span></a>
+          <a class="btn-secondary" href="/publications/">Publications</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="research-heading">
+      <div class="section-head">
+        <h2 id="research-heading">Research</h2>
+        <a href="/research/">All research <Icon name="arrow" size={14} /></a>
+      </div>
+      <div class="grid">
+        {research.map((r) => <ResearchCard project={r} />)}
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="pubs-heading">
+      <div class="section-head">
+        <h2 id="pubs-heading">Selected publications</h2>
+        <a href="/publications/">All publications <Icon name="arrow" size={14} /></a>
+      </div>
+      <div class="pubs">
+        {selected.map((p) => <PubEntry pub={p.data} />)}
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="honors-heading">
+      <div class="section-head">
+        <h2 id="honors-heading">Recent honors</h2>
+        <a href="/cv/#awards">All honors <Icon name="arrow" size={14} /></a>
+      </div>
+      <ul class="honors">
+        {awards.map((a) => (
+          <li class="card">
+            <span class="chip">{a.data.year}</span>
+            <p class="h-title">{a.data.title}</p>
+            {a.data.detail && <p class="muted h-detail">{a.data.detail}</p>}
+          </li>
+        ))}
+      </ul>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .hero {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: start;
+  }
+  .portrait {
+    width: 240px; height: 240px; object-fit: cover; object-position: 50% 30%;
+    border-radius: 50%;
+    border: 4px solid var(--surface);
+    box-shadow: 0 0 0 1px var(--border), var(--shadow);
+  }
+  .intro h1 { margin-bottom: 0.25rem; }
+  .role { font-size: 1.15rem; font-weight: 500; margin-bottom: 1.25rem; }
+  .role .muted { font-size: 1rem; font-weight: 400; }
+  .bio { max-width: 44rem; }
+  .cta { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.25rem; }
+  .btn-primary, .btn-secondary {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    padding: 0.6rem 1.1rem; border-radius: 0.6rem; font-weight: 600; text-decoration: none; font-size: 0.95rem;
+  }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-strong); color: #fff; }
+  :global(:root[data-theme='dark']) .btn-primary,
+  :global(:root[data-theme='dark']) .btn-primary:hover { color: #0b1213; }
+  .btn-secondary { border: 1px solid var(--border); color: var(--text); background: var(--surface); }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); gap: 1.25rem; }
+  .pubs { max-width: 52rem; }
+
+  .honors { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr)); gap: 1rem; }
+  .honors li { padding: 1rem 1.15rem; display: flex; flex-direction: column; gap: 0.4rem; align-items: flex-start; }
+  .h-title { font-weight: 600; margin: 0; line-height: 1.4; }
+  .h-detail { margin: 0; font-size: 0.92rem; }
+
+  @media (max-width: 44rem) {
+    .hero { grid-template-columns: 1fr; }
+    .portrait { width: 168px; height: 168px; }
+  }
+</style>

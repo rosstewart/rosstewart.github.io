@@ -1,0 +1,39 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Icon from './Icon.astro';
+interface Props { pub: CollectionEntry<'publications'>['data']; headingLevel?: 'h3' | 'h4' }
+const { pub, headingLevel = 'h3' } = Astro.props;
+const Heading = headingLevel;
+const ME = 'Stewart, R.';
+const parts = pub.authors.split(ME);
+---
+<article class="pub">
+  <Heading class="pub-title">{pub.title}</Heading>
+  <p class="pub-authors">
+    {parts.map((p, i) => (
+      <>{p}{i < parts.length - 1 && <strong class="me">{ME}</strong>}</>
+    ))}
+    {pub.note && <span class="pub-note"> ({pub.note})</span>}
+  </p>
+  <p class="pub-venue">
+    <span><em>{pub.venue}</em>{!pub.venue.includes(String(pub.year)) && `, ${pub.year}`}</span>
+    {pub.status !== 'published' && <span class="chip status">{pub.status === 'in press' ? 'In press' : 'Preprint'}</span>}
+  </p>
+  {pub.links.length > 0 && (
+    <ul class="btn-links" aria-label={`Links for ${pub.title}`}>
+      {pub.links.map((l) => (
+        <li><a class="btn-link" href={l.url}>{l.label}<Icon name="external" size={13} /></a></li>
+      ))}
+    </ul>
+  )}
+</article>
+<style>
+  .pub { padding-block: 1.1rem; border-bottom: 1px solid var(--border); }
+  .pub:last-child { border-bottom: 0; }
+  .pub-title { font-family: var(--font-sans); font-size: 1.05rem; font-weight: 600; line-height: 1.4; margin: 0 0 0.3rem; letter-spacing: 0; }
+  .pub-authors { color: var(--muted); font-size: 0.95rem; margin: 0 0 0.2rem; }
+  .me { color: var(--text); }
+  .pub-note { font-style: italic; }
+  .pub-venue { font-size: 0.95rem; margin: 0 0 0.6rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+  .status { font-size: 0.72rem; padding: 0.25rem 0.5rem; }
+</style>

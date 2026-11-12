@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getOrdered } from '../lib/collections';
+const talks = await getOrdered('talks');
+const groups = [
+  { id: 'talks', label: 'Talks', items: talks.filter((t) => t.data.kind !== 'Poster') },
+  { id: 'posters', label: 'Posters', items: talks.filter((t) => t.data.kind === 'Poster') },
+];
+---
+<BaseLayout title="Talks & Posters" description="Conference talks and poster presentations by Ross C. Stewart.">
+  <div class="container page">
+    <header class="page-intro">
+      <h1>Talks &amp; posters</h1>
+      <p>Conference presentations, invited talks, and posters.</p>
+    </header>
+    {groups.map((g) => (
+      <section class="section" aria-labelledby={g.id}>
+        <div class="section-head"><h2 id={g.id}>{g.label}</h2></div>
+        <ul class="entry-list">
+          {g.items.map((t) => (
+            <li>
+              <span class="when">{t.data.year}</span>
+              <div>
+                <strong>{t.data.event}</strong>
+                {t.data.kind === 'Flash talk' && <span class="muted"> · Flash talk</span>}
+                {t.data.detail && <div class="muted">{t.data.detail}</div>}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+</BaseLayout>
+<style>.section:first-of-type { margin-top: 0; }</style>

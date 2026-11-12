@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PubEntry from '../components/PubEntry.astro';
+import Icon from '../components/Icon.astro';
+import { getOrdered } from '../lib/collections';
+import { SOCIAL } from '../lib/site';
+
+const pubs = await getOrdered('publications');
+const years = [...new Set(pubs.map((p) => p.data.year))].sort((a, b) => b - a);
+const scholar = SOCIAL.find((s) => s.icon === 'scholar')!.url;
+const firstCount = pubs.filter((p) => p.data.firstAuthor).length;
+---
+<BaseLayout title="Publications" description="Publications by Ross C. Stewart: MutPred-PPI, ExCALIBR, PICNIC, and collaborative work on clinical variant interpretation.">
+  <div class="container page">
+    <header class="page-intro">
+      <h1>Publications</h1>
+      <p>
+        {pubs.length} papers and preprints. My name is shown in bold. For citation counts, see{' '}
+        <a href={scholar}>Google Scholar<Icon name="external" size={13} /></a>.
+      </p>
+    </header>
+
+    <div class="filters" role="group" aria-label="Filter publications" hidden>
+      <button type="button" data-filter="all" aria-pressed="true">All ({pubs.length})</button>
+      <button type="button" data-filter="first" aria-pressed="false">First / co-first author ({firstCount})</button>
+    </div>
+    <p class="visually-hidden" aria-live="polite" id="filter-status"></p>
+
+    {years.map((y) => (
+      <section class="year" aria-labelledby={`y-${y}`} data-year>
+        <h2 id={`y-${y}`}>{y}</h2>
+        <div>
+          {pubs.filter((p) => p.data.year === y).map((p) => (
+            <div data-first={String(p.data.firstAuthor)}><PubEntry pub={p.data} /></div>
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+</BaseLayout>
+
+<script>
+  const group = document.querySelector<HTMLElement>('.filters');
+  const status = document.getElementById('filter-status');
+  if (group) {
+    group.hidden = false;
+    const buttons = group.querySelectorAll<HTMLButtonElement>('button');
+    buttons.forEach((btn) =>
+      btn.addEventListener('click', () => {
+        const firstOnly = btn.dataset.filter === 'first';
+        buttons.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+        let shown = 0;
+        document.querySelectorAll<HTMLElement>('[data-first]').forEach((el) => {
+          const hide = firstOnly && el.dataset.first !== 'true';
+          el.hidden = hide;
+          if (!hide) shown++;
+        });
+        document.querySelectorAll<HTMLElement>('[data-year]').forEach((sec) => {
+          sec.hidden = !sec.querySelector('[data-first]:not([hidden])');
+        });
+        if (status) status.textContent = `Showing ${shown} publications`;
+      }),
+    );
+  }
+</script>
+
+<style>
+  .filters { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+  .filters button {
+    font: inherit; font-size: 0.92rem; font-weight: 500; cursor: pointer;
+    padding: 0.45rem 0.9rem; border-radius: 999px;
+    border: 1px solid var(--border); background: var(--surface); color: var(--text);
+  }
+  .filters button[aria-pressed='true'] { background: var(--accent); border-color: var(--accent); color: #fff; }
+  :global(:root[data-theme='dark']) .filters button[aria-pressed='true'] { color: #0b1213; }
+  .year { display: grid; grid-template-columns: 6rem 1fr; gap: 1rem; max-width: 60rem; border-top: 1px solid var(--border); padding-top: 0.5rem; }
+  .year h2 { font-size: 1.4rem; color: var(--muted); padding-top: 1rem; }
+  @media (max-width: 40rem) { .year { grid-template-columns: 1fr; gap: 0; } .year h2 { margin-bottom: 0; } }
+</style>

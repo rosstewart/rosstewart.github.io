@@ -1,0 +1,16 @@
+---
+import { SITE } from '../lib/site';
+import SocialLinks from './SocialLinks.astro';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container inner">
+    <SocialLinks showLabels={false} />
+    <p class="muted">© {year} {SITE.name}</p>
+  </div>
+</footer>
+<style>
+  .site-footer { border-top: 1px solid var(--border); margin-top: 2rem; }
+  .inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1.5rem; }
+  .inner p { margin: 0; font-size: 0.9rem; }
+</style>

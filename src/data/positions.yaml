@@ -1,0 +1,69 @@
+- id: phd
+  section: education
+  title: "Ph.D., Computer Science (Machine Learning & Bioinformatics)"
+  org: Northeastern University, Khoury College of Computer Sciences
+  location: Boston, MA
+  dates: 2024 – 2028 (expected)
+  bullets: ["Advised in the Radivojac Lab · GPA 4.0"]
+- id: bs
+  section: education
+  title: "B.S., Computer Science, Minor in Mathematics"
+  org: University of Miami
+  location: Coral Gables, FL
+  dates: 2021 – 2024
+  bullets: ["Cum Laude, Phi Beta Kappa · GPA 3.93"]
+
+- id: ra-neu
+  section: research
+  title: Research Assistant
+  org: Radivojac Lab, Northeastern University
+  location: Boston, MA
+  dates: Sep 2024 – present
+  bullets:
+    - "Graph attention networks for interaction-specific PPI perturbation by missense variants (MutPred-PPI, RECOMB 2026)"
+    - "Skew-normal mixture models to calibrate high-throughput functional assays for clinical variant interpretation (ExCALIBR)"
+    - "Models across 30+ residue-level property prediction tasks to uncover mechanisms of pathogenicity"
+- id: ra-um
+  section: research
+  title: Undergraduate Research Assistant
+  org: Dr. Zheng Wang's Bioinformatics Lab, University of Miami
+  location: Coral Gables, FL
+  dates: May 2022 – May 2024
+  bullets:
+    - "Deep 3D residual networks to refine AlphaFold2 structure predictions (PICNIC, IEEE BIBM 2024)"
+    - "Participated in the CASP15 structure prediction assessment"
+
+- id: ta-neu
+  section: teaching
+  title: "Teaching Assistant, Machine Learning (graduate)"
+  org: Northeastern University, Khoury College of Computer Sciences
+  dates: Fall 2026
+- id: ta-um
+  section: teaching
+  title: "Teaching Assistant, Computer Science"
+  org: University of Miami
+  dates: Aug 2022 – May 2024
+  bullets:
+    - "Taught 200+ students in data structures, algorithms, machine learning, and bioinformatics; held office hours and designed and graded project assignments"
+
+- id: stemperts
+  section: industry
+  title: AI/ML Intern
+  org: STEMperts
+  location: Houston, TX
+  dates: Jun – Aug 2024
+  bullets: ["LLM pipelines that tailor mathematics education to individual student interests"]
+- id: singular
+  section: industry
+  title: VR Developer Intern
+  org: The Singular Factory Group, LLC
+  location: Miami, FL
+  dates: May – Aug 2022
+  bullets: ["Metaverse and VR/AR/MR solutions in C# and Unity, including HoloGIS, a multi-user virtual conferencing tool"]
+- id: innovate
+  section: industry
+  title: XR Programmer
+  org: University of Miami Innovate Team
+  location: Coral Gables, FL
+  dates: Jan – May 2022
+  bullets: ["XR applications with C#, Unity, and Magic Leap in a scrum-based team"]
